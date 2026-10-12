@@ -18,3 +18,12 @@ out/
 
 # Turborepo
 .turbo/
+
+# TypeScript
+*.tsbuildinfo
+
+# Vercel
+.vercel/
+
+# Testing
+coverage/
