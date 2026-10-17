@@ -64,6 +64,19 @@ const paths = {
     </>
   ),
   arrow: <path d="M4 12h16M14 6l6 6-6 6" />,
+  instagram: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="0.9" className="fill-current" />
+    </>
+  ),
+  youtube: (
+    <>
+      <rect x="2.5" y="5.5" width="19" height="13" rx="4" />
+      <path d="M10 9.5l5 2.5-5 2.5z" />
+    </>
+  ),
   quote: (
     <path
       d="M9 7H5.5A1.5 1.5 0 0 0 4 8.5V13a1.5 1.5 0 0 0 1.5 1.5H8V16a3 3 0 0 1-3 3M19 7h-3.5A1.5 1.5 0 0 0 14 8.5V13a1.5 1.5 0 0 0 1.5 1.5H18V16a3 3 0 0 1-3 3"

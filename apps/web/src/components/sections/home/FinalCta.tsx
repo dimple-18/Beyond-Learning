@@ -48,7 +48,7 @@ export function FinalCta() {
             />
           </ButtonLink>
           <ButtonLink href="/#courses" variant="outline-light">
-            Explore CLAT UG
+            Explore Courses
           </ButtonLink>
         </Reveal>
       </Container>

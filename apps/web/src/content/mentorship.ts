@@ -31,7 +31,7 @@ export const mentorshipIntro = {
     accent: "syllabus",
   },
   description:
-    "Personalised mentorship to help you plan better, make informed decisions and stay motivated through every stage of your law entrance journey.",
+    "Personalised mentorship from our mentors, to help you plan better, make informed decisions and stay motivated through every stage of your law entrance journey.",
   quote:
     "Clearing an exam is an achievement. Knowing where you are headed is an advantage.",
 } as const;
@@ -68,10 +68,44 @@ export const mentorshipJourney: readonly {
   icon: IconName;
   highlight?: boolean;
 }[] = [
-  { label: "Mentor", caption: "Expert guidance at every step", icon: "person" },
+  { label: "Mentor", caption: "Guided by our mentors, step by step", icon: "person" },
   { label: "You", caption: "Your goals, our focus", icon: "person", highlight: true },
   { label: "Beyond", caption: "A brighter future in law", icon: "columns" },
 ];
+
+/**
+ * Real mentor profiles. The client has not supplied any mentor names,
+ * qualifications or photographs yet, so this list is intentionally empty and
+ * the section shows no mentor card. Do not invent entries.
+ *
+ * To introduce a mentor, add an object below. The section then shows a "Your
+ * mentor" card (portrait, name, role, optional note) with no other change.
+ * Portrait: add `public/images/mentors/<photoFileName>.webp` (4:5, 900 × 1125
+ * px minimum; `.jpg`, `.jpeg`, `.avif`, `.png` also work).
+ */
+export type MentorProfile = {
+  name: string;
+  /** Role or title exactly as supplied by the client. */
+  role: string;
+  /** Optional short note in the client's own words. */
+  note?: string;
+  /** File name (without extension) inside `public/images/mentors/`. */
+  photoFileName?: string;
+  /** Describe the real photograph. */
+  photoAlt?: string;
+};
+
+export const mentorProfiles: readonly MentorProfile[] = [];
+
+/** Public URL of a mentor portrait, or null when none has been added. */
+export function getMentorPhoto(mentor: MentorProfile): string | null {
+  if (!mentor.photoFileName) return null;
+  return findLocalPhoto({
+    directory: "images/mentors",
+    fileName: mentor.photoFileName,
+    extensions,
+  });
+}
 
 export type FocusArea = {
   title: string;

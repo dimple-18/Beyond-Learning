@@ -7,11 +7,15 @@ export type Course = {
   slug: string;
   name: string;
   fullName: string;
-  /** One-line overview shown beside the section heading. */
+  /** One-line overview shown in the course index. */
   summary: string;
-  /** Short description shown on the flagship panel. */
+  /** Short description shown on the detail panel. */
   description: string;
-  coverage: CourseArea[];
+  /**
+   * Subject coverage. Only add this once the client supplies it: do not
+   * invent syllabus details. Courses without it are shown without a coverage list.
+   */
+  coverage?: CourseArea[];
 };
 
 export const clatUg: Course = {
@@ -50,3 +54,24 @@ export const clatUg: Course = {
     },
   ],
 };
+
+// CLAT PG and Judiciary: conservative labels only. No fees, dates, durations,
+// results, eligibility or syllabus details have been supplied by the client.
+export const clatPg: Course = {
+  slug: "clat-pg",
+  name: "CLAT PG",
+  fullName: "Common Law Admission Test — Postgraduate",
+  summary: "Guided preparation and mentorship for the CLAT PG examination.",
+  description: "Guided preparation and mentorship for the CLAT PG examination.",
+};
+
+export const judiciary: Course = {
+  slug: "judiciary",
+  name: "Judiciary",
+  fullName: "Judiciary Examinations",
+  summary: "Guided preparation and mentorship for judiciary examinations.",
+  description: "Guided preparation and mentorship for judiciary examinations.",
+};
+
+/** The three course areas offered, in display order. */
+export const courses: readonly Course[] = [clatUg, clatPg, judiciary];

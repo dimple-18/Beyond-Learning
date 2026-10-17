@@ -2,12 +2,17 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import { Container } from "@/components/layout/Container";
 import { ArchitectureSketch } from "@/components/sections/home/ArchitectureSketch";
-import { BotanicalSprig } from "@/components/sections/home/BotanicalSprig";
+import {
+  CourseExplorer,
+  type ExplorerCourse,
+} from "@/components/sections/home/CourseExplorer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
-import { clatUg } from "@/content/courses";
+import { enquiryHref } from "@/config/navigation";
+import { clatUg, courses } from "@/content/courses";
 import { coursesPhotoSlot, getCoursesPhoto } from "@/content/courses-photo";
+import { getCourseVisual } from "@/content/courses-visuals";
 
 const coverageIcons: IconName[] = ["book", "globe", "scales", "branch", "calc"];
 
@@ -27,39 +32,52 @@ function Star({ className }: { className?: string }) {
 export function CourseShowcase() {
   const photo = getCoursesPhoto();
 
+  const explorerCourses: ExplorerCourse[] = courses.map((course) => ({
+    slug: course.slug,
+    name: course.name,
+    fullName: course.fullName,
+    summary: course.summary,
+    visual: getCourseVisual(course),
+  }));
+
   return (
-    <section id="courses" className="relative overflow-x-clip py-16 lg:py-20">
-      <BotanicalSprig className="pointer-events-none absolute -top-2 -right-10 hidden w-44 rotate-[200deg] opacity-30 xl:block" />
+    <section id="courses" className="relative overflow-x-clip">
+      {/* Overview: choose a path. A warm cream band separates it from the detail below. */}
+      <div className="relative bg-[color-mix(in_srgb,var(--color-background)_55%,var(--color-border))] pt-16 pb-24 lg:pt-24 lg:pb-32">
+        <CourseExplorer
+          courses={explorerCourses}
+          enquiryHref={enquiryHref}
+          intro={
+            <>
+              <Reveal>
+                <Eyebrow className="text-brand">Courses</Eyebrow>
+              </Reveal>
+              <Reveal
+                as="h2"
+                delay={100}
+                className="mt-6 font-display text-[2.4rem] leading-[1.08] font-medium tracking-[-0.01em] text-brand sm:text-5xl lg:text-[2.75rem] xl:text-[3.4rem]"
+              >
+                Preparation built for your path in law
+                <span className="text-[color-mix(in_srgb,var(--color-accent)_80%,var(--color-brand))]">
+                  .
+                </span>
+              </Reveal>
+              <Reveal
+                as="p"
+                delay={200}
+                className="mt-6 max-w-[20rem] border-l border-accent/50 pl-5 text-sm leading-relaxed text-[#4a4640]"
+              >
+                Three course areas, guided by one mentorship-led approach.
+              </Reveal>
+            </>
+          }
+        />
+      </div>
+
       <ArchitectureSketch className="pointer-events-none absolute right-0 bottom-6 hidden w-72 translate-x-[38%] opacity-30 xl:block" />
 
-      <Container className="relative">
-        <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-10">
-          <div>
-            <Reveal>
-              <Eyebrow className="text-brand">Courses</Eyebrow>
-            </Reveal>
-            <Reveal
-              as="h2"
-              delay={100}
-              className="mt-6 font-display text-[2.4rem] leading-[1.08] font-medium tracking-[-0.01em] text-brand sm:text-5xl lg:text-[2.75rem] xl:text-[3.4rem]"
-            >
-              Preparation built for {clatUg.name}
-              <span className="text-[color-mix(in_srgb,var(--color-accent)_80%,var(--color-brand))]">
-                .
-              </span>
-            </Reveal>
-          </div>
-
-          <Reveal
-            as="p"
-            delay={200}
-            className="max-w-[16rem] text-sm leading-relaxed text-[#4a4640] lg:border-l lg:border-accent/40 lg:pb-1 lg:pl-6"
-          >
-            {clatUg.summary}
-          </Reveal>
-        </div>
-
-        <div className="mt-10 grid gap-12 lg:mt-12 lg:grid-cols-[47fr_53fr] lg:gap-14 xl:gap-16">
+      <Container className="relative py-16 lg:py-20">
+        <div className="grid gap-12 lg:grid-cols-[47fr_53fr] lg:gap-14 xl:gap-16">
           <Reveal
             delay={150}
             className="relative isolate flex min-h-[42rem] flex-col overflow-hidden rounded-tl-[4.5rem] rounded-tr-[6rem] rounded-b-sm bg-brand text-background lg:min-h-[34rem] lg:rounded-tl-[5rem] lg:rounded-tr-[7rem] xl:-ml-14"
@@ -112,7 +130,7 @@ export function CourseShowcase() {
 
             <div className="relative p-8 sm:p-10 lg:p-12">
               <p className="flex items-center gap-4 text-[0.7rem] font-semibold tracking-[0.28em] text-accent uppercase">
-                Flagship course
+                Course detail
                 <span aria-hidden="true" className="h-px w-14 bg-accent/70" />
               </p>
               <p className="mt-7 font-display text-[5.5rem] leading-none font-light text-accent lg:text-[6.5rem]">
@@ -130,10 +148,10 @@ export function CourseShowcase() {
 
           <div className="lg:pt-3">
             <h3 className="text-[0.7rem] font-semibold tracking-[0.3em] text-[#4a4640] uppercase">
-              What it covers
+              What {clatUg.name} covers
             </h3>
             <ol className="mt-5 border-t border-accent/30">
-              {clatUg.coverage.map((area, index) => (
+              {(clatUg.coverage ?? []).map((area, index) => (
                 <Reveal
                   as="li"
                   key={area.title}

@@ -2,7 +2,7 @@ import type { IconName } from "@/components/ui/Icon";
 import { findLocalPhoto } from "@/lib/photo-slot";
 
 /**
- * "The Beyond Learning Approach" content and photography slots.
+ * "The Beyond Learrning Approach" content and photography slots.
  *
  * To publish the photographs, add these files to `apps/web/public/images/home/`
  * (`.jpg`, `.jpeg`, `.avif`, `.png` are also detected). The section picks them
@@ -21,7 +21,7 @@ import { findLocalPhoto } from "@/lib/photo-slot";
  * IMPORTANT: update each `alt` to describe the real photograph once added.
  */
 export const approachIntro = {
-  heading: { first: "The Beyond Learning", second: "Approach" },
+  heading: { first: "The Beyond Learrning", second: "Approach" },
   description:
     "A structured and holistic approach to help you build concepts, develop the right strategy and stay on track until exam day.",
 } as const;

@@ -9,7 +9,9 @@ import { enquiryHref } from "@/config/navigation";
 import {
   focusAreas,
   getFocusAreaPhoto,
+  getMentorPhoto,
   getMentorshipScene,
+  mentorProfiles,
   mentorshipIntro,
   mentorshipJourney,
   mentorshipSceneSlot,
@@ -132,6 +134,51 @@ export function Mentorship() {
             </blockquote>
             <span aria-hidden="true" className="mt-6 block h-px w-9 bg-accent" />
           </Reveal>
+
+          {/* Real mentor profiles. Renders nothing until the client supplies them. */}
+          {mentorProfiles.length > 0 && (
+            <div className="mt-10 lg:w-[90%]">
+              <p className="text-[0.7rem] font-semibold tracking-[0.28em] text-[#4a4640] uppercase">
+                Your mentor
+              </p>
+              <ul className="mt-5 space-y-5">
+                {mentorProfiles.map((mentor) => {
+                  const photo = getMentorPhoto(mentor);
+                  return (
+                    <Reveal as="li" key={mentor.name} className="flex items-center gap-5">
+                      <div
+                        className={cn(
+                          "relative aspect-[4/5] w-20 shrink-0 overflow-hidden rounded-tl-[2.5rem] rounded-tr-sm rounded-b-sm",
+                          sand,
+                        )}
+                      >
+                        {photo && (
+                          <Image
+                            src={photo}
+                            alt={mentor.photoAlt ?? mentor.name}
+                            fill
+                            sizes="80px"
+                            className="object-cover object-top"
+                          />
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-display text-xl text-brand">{mentor.name}</p>
+                        <p className={cn("mt-1 text-[0.7rem] font-semibold tracking-[0.22em] uppercase", accentText)}>
+                          {mentor.role}
+                        </p>
+                        {mentor.note && (
+                          <p className="mt-2 max-w-[18rem] text-[0.85rem] leading-snug text-[#4a4640]">
+                            {mentor.note}
+                          </p>
+                        )}
+                      </div>
+                    </Reveal>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* Right: journey panel with the four focus areas overlapping its base */}

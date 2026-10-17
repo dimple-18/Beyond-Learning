@@ -22,18 +22,18 @@ const focusRing =
 const benefits: { icon: IconName; title: string; line: string }[] = [
   {
     icon: "mentor",
-    title: "Expert Mentors",
-    line: "Learn from experienced law professionals",
+    title: "Personalised Mentorship",
+    line: "Guidance shaped around your goals",
   },
   {
     icon: "book",
-    title: "Structured Learning",
-    line: "Comprehensive study plan and resources",
+    title: "Structured Preparation",
+    line: "A focused approach for every stage",
   },
   {
-    icon: "bars",
-    title: "Proven Results",
-    line: "Consistent success in law entrance exams",
+    icon: "scales",
+    title: "Law-focused Education",
+    line: "Built around law examinations",
   },
 ];
 
@@ -86,7 +86,7 @@ export function Hero() {
               style={delay(200)}
               className={`${enter} mt-7 max-w-[28rem] text-base leading-[1.75] text-[#4a4640] lg:text-[1.0625rem]`}
             >
-              Focused preparation for CLAT and other law entrance examinations,
+              Focused preparation for CLAT, judiciary and other law examinations,
               guided by mentors who stay invested in your journey beyond the
               exam.
             </p>
@@ -103,7 +103,7 @@ export function Hero() {
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/4 -skew-x-[18deg] bg-white/15 transition-transform duration-[900ms] ease-out group-hover:translate-x-[560%] motion-reduce:hidden"
                 />
-                <span className="relative">Explore CLAT UG</span>
+                <span className="relative">Explore Courses</span>
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 16 16"
