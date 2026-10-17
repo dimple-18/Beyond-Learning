@@ -74,7 +74,7 @@ export const approachStages: readonly ApproachStage[] = [
   {
     title: { first: "Regular", rest: "Assessment" },
     description:
-      "Topic-wise tests, full-length mocks and clear performance analysis.",
+      "Regular assessment and practice.",
     icon: "bars",
     photo: {
       directory,
@@ -87,7 +87,7 @@ export const approachStages: readonly ApproachStage[] = [
   {
     title: { first: "Personalised", rest: "Mentorship" },
     description:
-      "One-to-one mentorship and continuous support from mentors who understand your goals.",
+      "Individual mentorship and continuous support from mentors who understand your goals.",
     icon: "mentor",
     photo: {
       directory,

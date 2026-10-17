@@ -21,7 +21,7 @@ export const journeyIntro = {
   headingAccent: "milestone",
   headingRest: ", not the finish line.",
   description:
-    "A strong foundation today opens doors to the right law school and a meaningful career tomorrow.",
+    "A strong foundation today supports the journey towards law school and a meaningful career.",
 } as const;
 
 export const journeySceneSlot = {

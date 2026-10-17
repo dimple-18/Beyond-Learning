@@ -5,11 +5,13 @@ export type CourseArea = {
 
 export type Course = {
   slug: string;
+  /** Short label used for headings, rows and navigation. */
   name: string;
+  /** Full approved title, shown as the sub-label. */
   fullName: string;
-  /** One-line overview shown in the course index. */
+  /** First sentence of the approved description, for compact placements. */
   summary: string;
-  /** Short description shown on the detail panel. */
+  /** Full Team Lead–approved description. */
   description: string;
   /**
    * Subject coverage. Only add this once the client supplies it: do not
@@ -18,14 +20,18 @@ export type Course = {
   coverage?: CourseArea[];
 };
 
+// Course copy below is the Team Lead's approved wording. No fees, durations,
+// batch dates, eligibility, results, ranks, guarantees or extra syllabus have
+// been supplied: do not add any.
+
 export const clatUg: Course = {
   slug: "clat-ug",
   name: "CLAT UG",
   fullName: "Common Law Admission Test — Undergraduate",
   summary:
-    "A focused, structured program designed to strengthen every section of the CLAT UG examination.",
+    "A comprehensive preparation programme for students aspiring to pursue undergraduate law at leading National Law Universities and other premier institutions.",
   description:
-    "A comprehensive program to build strong concepts, sharpen reasoning and prepare you for success in CLAT UG.",
+    "A comprehensive preparation programme for students aspiring to pursue undergraduate law at leading National Law Universities and other premier institutions. The programme combines focused preparation, strategic exam guidance, regular assessment and personalised mentorship to help students approach the examination with clarity and confidence.",
   coverage: [
     {
       title: "English Language",
@@ -55,23 +61,35 @@ export const clatUg: Course = {
   ],
 };
 
-// CLAT PG and Judiciary: conservative labels only. No fees, dates, durations,
-// results, eligibility or syllabus details have been supplied by the client.
+export const ailet: Course = {
+  slug: "ailet",
+  name: "AILET",
+  fullName: "AILET & Other Law Entrance Examinations",
+  summary:
+    "A dedicated programme for aspirants preparing for AILET and other undergraduate law entrance examinations.",
+  description:
+    "A dedicated programme for aspirants preparing for AILET and other undergraduate law entrance examinations. With structured preparation, exam-oriented strategies, regular practice and individual mentorship, students are guided to navigate different entrance examinations effectively.",
+};
+
 export const clatPg: Course = {
   slug: "clat-pg",
   name: "CLAT PG",
   fullName: "Common Law Admission Test — Postgraduate",
-  summary: "Guided preparation and mentorship for the CLAT PG examination.",
-  description: "Guided preparation and mentorship for the CLAT PG examination.",
+  summary:
+    "A specialised programme for law graduates preparing for CLAT PG and postgraduate law entrance examinations.",
+  description:
+    "A specialised programme for law graduates preparing for CLAT PG and postgraduate law entrance examinations. The course focuses on systematic preparation, conceptual understanding, examination strategy, regular evaluation and personalised mentorship to help aspirants achieve their postgraduate goals.",
 };
 
 export const judiciary: Course = {
   slug: "judiciary",
   name: "Judiciary",
-  fullName: "Judiciary Examinations",
-  summary: "Guided preparation and mentorship for judiciary examinations.",
-  description: "Guided preparation and mentorship for judiciary examinations.",
+  fullName: "State Judicial Service Examinations",
+  summary:
+    "A comprehensive and mentorship-driven programme for aspirants preparing for State Judicial Service examinations.",
+  description:
+    "A comprehensive and mentorship-driven programme for aspirants preparing for State Judicial Service examinations. Beyond examination preparation, the programme aims to develop the discipline, legal understanding, consistency and strategic approach required for a career in the judiciary.",
 };
 
-/** The three course areas offered, in display order. */
-export const courses: readonly Course[] = [clatUg, clatPg, judiciary];
+/** The four course areas offered, in display order. */
+export const courses: readonly Course[] = [clatUg, ailet, clatPg, judiciary];

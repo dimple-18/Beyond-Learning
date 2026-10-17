@@ -18,7 +18,7 @@ export type ExplorerCourse = {
   slug: string;
   name: string;
   fullName: string;
-  summary: string;
+  description: string;
   visual: {
     src: string;
     alt: string;
@@ -84,7 +84,7 @@ export function CourseExplorer({
   return (
     <div className="mx-auto grid w-full max-w-[84rem] gap-14 px-6 lg:grid-cols-[42fr_58fr] lg:gap-16 lg:px-10 xl:gap-24">
       {/* Left: heading and programme directory */}
-      <div className="flex flex-col lg:min-h-[38rem] lg:justify-between xl:min-h-[41rem]">
+      <div className="flex flex-col lg:min-h-[40rem] lg:justify-between xl:min-h-[46rem]">
         <div>{intro}</div>
 
         <Reveal delay={250} className="mt-10 lg:mt-12">
@@ -159,7 +159,7 @@ export function CourseExplorer({
       {/* Right: photograph canvas with the active course's details */}
       <Reveal
         delay={200}
-        className="relative lg:h-full lg:min-h-[38rem] xl:min-h-[41rem]"
+        className="relative lg:h-full lg:min-h-[40rem] xl:min-h-[46rem]"
       >
         <div className="relative aspect-[4/5] sm:aspect-[4/3] lg:absolute lg:inset-0 lg:aspect-auto">
           {/* Offset gold frame: the one distinctive crop on this canvas */}
@@ -200,7 +200,7 @@ export function CourseExplorer({
           id={panelId}
           role="tabpanel"
           aria-labelledby={tabId(active)}
-          className="relative z-10 mx-4 -mt-16 grid bg-brand px-7 py-8 text-background sm:mx-8 sm:-mt-20 sm:px-9 lg:absolute lg:bottom-0 lg:left-0 lg:mx-0 lg:mt-0 lg:w-[23rem] lg:-translate-x-10 lg:translate-y-8 lg:px-9 lg:py-9"
+          className="relative z-10 mx-4 -mt-16 grid bg-brand px-7 py-8 text-background sm:mx-8 sm:-mt-20 sm:px-9 lg:absolute lg:bottom-0 lg:left-0 lg:mx-0 lg:mt-0 lg:w-[27rem] lg:-translate-x-10 lg:translate-y-8 lg:px-9 lg:py-9"
         >
           {courses.map((course, index) => {
             const selected = index === active;
@@ -226,8 +226,8 @@ export function CourseExplorer({
                 <p className="mt-3 text-[0.66rem] font-semibold tracking-[0.2em] text-background/70 uppercase">
                   {course.fullName}
                 </p>
-                <p className="mt-4 max-w-[19rem] text-[0.88rem] leading-relaxed text-background/85">
-                  {course.summary}
+                <p className="mt-4 max-w-[22rem] text-[0.85rem] leading-relaxed text-background/85">
+                  {course.description}
                 </p>
                 <Link
                   href={enquiryHref}

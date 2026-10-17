@@ -2,6 +2,13 @@ import { Container } from "@/components/layout/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { DrawPath, Reveal } from "@/components/ui/Reveal";
+import { about, differentiator, introduction } from "@/content/brand";
+import { courses } from "@/content/courses";
+
+// Split the approved statement at its semicolon so the second clause is highlighted.
+const statementSplit = introduction.statement.indexOf(";") + 1;
+const statementLead = introduction.statement.slice(0, statementSplit);
+const statementAccent = introduction.statement.slice(statementSplit).trim();
 
 const VIEW_W = 480;
 const VIEW_H = 440;
@@ -167,10 +174,10 @@ export function BeyondTheExam() {
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-24 -left-16 size-72 animate-drift rounded-full bg-background/5 blur-3xl [animation-delay:-7s]"
       />
-      <Container className="relative grid items-center gap-16 py-24 lg:grid-cols-12 lg:gap-8 lg:py-32">
+      <Container className="relative grid items-center gap-16 pt-24 pb-16 lg:grid-cols-12 lg:gap-8 lg:pt-32 lg:pb-20">
         <div className="lg:col-span-6">
           <Reveal>
-            <Eyebrow className="text-background/70">Beyond the Exam</Eyebrow>
+            <Eyebrow className="text-background/70">{about.heading}</Eyebrow>
           </Reveal>
 
           <Reveal
@@ -178,15 +185,79 @@ export function BeyondTheExam() {
             delay={120}
             className="mt-10 font-display text-3xl leading-snug text-balance sm:text-4xl lg:text-[2.9rem] lg:leading-[1.2]"
           >
-            We don’t just prepare students for an examination.{" "}
-            <span className="text-accent">
-              We mentor them for the journey beyond it.
-            </span>
+            {statementLead}{" "}
+            <span className="text-accent">{statementAccent}</span>
+          </Reveal>
+
+          <Reveal delay={240} className="mt-8 max-w-[34rem]">
+            <p className="text-[0.7rem] font-semibold tracking-[0.3em] text-accent uppercase">
+              {about.tagline}
+            </p>
+            {about.paragraphs.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="mt-4 text-[0.95rem] leading-relaxed text-background/80"
+              >
+                {paragraph}
+              </p>
+            ))}
           </Reveal>
         </div>
 
         <div className="lg:col-span-6 lg:pl-8">
           <ExamPath />
+        </div>
+      </Container>
+
+      <Container className="relative pb-24 lg:pb-32">
+        {/* What Makes Us Different */}
+        <div className="grid gap-8 border-t border-background/15 pt-14 lg:grid-cols-12 lg:gap-12 lg:pt-16">
+          <div className="lg:col-span-5">
+            <Reveal>
+              <Eyebrow className="text-background/70">
+                {differentiator.heading}
+              </Eyebrow>
+            </Reveal>
+            <Reveal
+              as="p"
+              delay={120}
+              className="mt-6 font-display text-2xl leading-snug text-background sm:text-3xl"
+            >
+              {differentiator.lead}
+            </Reveal>
+          </div>
+          <Reveal
+            as="p"
+            delay={200}
+            className="text-[0.95rem] leading-relaxed text-background/80 lg:col-span-6 lg:col-start-7 lg:pt-1"
+          >
+            {differentiator.body}
+          </Reveal>
+        </div>
+
+        {/* Our Courses */}
+        <div className="mt-16 lg:mt-20">
+          <Reveal>
+            <Eyebrow className="text-background/70">Our Courses</Eyebrow>
+          </Reveal>
+          <ol className="mt-8 grid gap-x-10 gap-y-12 border-t border-background/15 pt-10 md:grid-cols-2 xl:grid-cols-4 xl:gap-x-8">
+            {courses.map((course, index) => (
+              <Reveal as="li" key={course.slug} delay={120 + index * 100}>
+                <p className="font-display text-lg text-accent">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-2 font-display text-[1.9rem] leading-none font-medium text-background">
+                  {course.name}
+                </h3>
+                <p className="mt-3 text-[0.64rem] font-semibold tracking-[0.2em] text-background/60 uppercase">
+                  {course.fullName}
+                </p>
+                <p className="mt-4 text-[0.88rem] leading-relaxed text-background/80">
+                  {course.description}
+                </p>
+              </Reveal>
+            ))}
+          </ol>
         </div>
       </Container>
     </section>

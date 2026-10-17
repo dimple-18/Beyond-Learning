@@ -31,6 +31,11 @@ const slots: Record<string, CourseVisualSlot> = {
     alt: "A student writing notes at a library desk among open law books, with tall bookshelves and a sunlit window behind",
     objectPosition: { desktop: "50% 62%", mobile: "50% 30%" },
   },
+  ailet: {
+    fallbackFileName: "approach-assessment",
+    alt: "A student concentrating on practice papers in a quiet study hall, with other students and bookshelves behind",
+    objectPosition: { desktop: "50% 55%", mobile: "50% 35%" },
+  },
   "clat-pg": {
     fallbackFileName: "approach-guidance",
     alt: "A student and a mentor reviewing notes together over open books and a laptop at a library table",

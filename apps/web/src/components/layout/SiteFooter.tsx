@@ -1,13 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { enquiryHref, mainNav } from "@/config/navigation";
 import { Icon } from "@/components/ui/Icon";
+import { contact, emailHref, phoneHref } from "@/config/contact";
 import { siteConfig } from "@/config/site";
 import { activeSocialLinks } from "@/config/social";
 import { courses } from "@/content/courses";
 
 const headingClass =
   "text-xs font-semibold tracking-[0.25em] text-brand uppercase";
+const iconLinkClass =
+  "flex size-11 items-center justify-center rounded-full border border-accent/60 text-brand transition-colors duration-300 hover:border-brand hover:bg-brand hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none";
 const linkClass = "text-sm text-muted transition-colors hover:text-brand";
 
 export function SiteFooter() {
@@ -15,11 +19,15 @@ export function SiteFooter() {
     <footer className="border-t-2 border-accent bg-background">
       <Container className="grid gap-12 py-16 md:grid-cols-12">
         <div className="md:col-span-5">
-          <Link
-            href="/"
-            className="font-display text-2xl font-semibold tracking-[0.14em] text-brand uppercase"
-          >
-            {siteConfig.name}
+          <Link href="/" aria-label={siteConfig.name} className="block w-fit">
+            <Image
+              src={siteConfig.logo.src}
+              alt={siteConfig.name}
+              width={siteConfig.logo.width}
+              height={siteConfig.logo.height}
+              sizes="190px"
+              className="h-20 w-auto"
+            />
           </Link>
           <p className="mt-3 text-[0.68rem] font-semibold tracking-[0.3em] text-brand/70 uppercase">
             {siteConfig.signature}
@@ -31,23 +39,39 @@ export function SiteFooter() {
             {siteConfig.strapline}
           </p>
 
-          {activeSocialLinks.length > 0 && (
-            <ul aria-label="Social media" className="mt-8 flex items-center gap-3">
-              {activeSocialLinks.map((link) => (
-                <li key={link.platform}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${siteConfig.name} on ${link.label} (opens in a new tab)`}
-                    className="flex size-11 items-center justify-center rounded-full border border-accent/60 text-brand transition-colors duration-300 hover:border-brand hover:bg-brand hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"
-                  >
-                    <Icon name={link.icon} className="size-5" strokeWidth={1.25} />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
+          <ul aria-label="Contact and social media" className="mt-8 flex flex-wrap items-center gap-3">
+            <li>
+              <a
+                href={emailHref}
+                aria-label={`Email ${contact.email}`}
+                className={iconLinkClass}
+              >
+                <Icon name="mail" className="size-5" strokeWidth={1.25} />
+              </a>
+            </li>
+            <li>
+              <a
+                href={phoneHref}
+                aria-label={`Call ${contact.phone}`}
+                className={iconLinkClass}
+              >
+                <Icon name="phone" className="size-5" strokeWidth={1.25} />
+              </a>
+            </li>
+            {activeSocialLinks.map((link) => (
+              <li key={link.platform}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${siteConfig.name} on ${link.label} (opens in a new tab)`}
+                  className={iconLinkClass}
+                >
+                  <Icon name={link.icon} className="size-5" strokeWidth={1.25} />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <nav aria-label="Footer" className="md:col-span-3 md:col-start-7">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { HeaderFrame } from "@/components/layout/HeaderFrame";
@@ -9,22 +10,23 @@ const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
 
 export function SiteHeader() {
-  const [first, ...rest] = siteConfig.name.split(" ");
-
   return (
     <HeaderFrame>
       <Container className="grid h-20 grid-cols-[auto_1fr] items-center gap-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-10">
         <Link
           href="/"
           aria-label={siteConfig.name}
-          className={`flex w-fit flex-col font-display leading-none text-brand uppercase ${focusRing}`}
+          className={`block w-fit ${focusRing}`}
         >
-          <span className="text-[1.3rem] font-semibold tracking-[0.34em]">
-            {first}
-          </span>
-          <span className="mt-1.5 font-sans text-[0.68rem] font-medium tracking-[0.78em] text-brand/70">
-            {rest.join(" ")}
-          </span>
+          <Image
+            src={siteConfig.logo.src}
+            alt={siteConfig.name}
+            width={siteConfig.logo.width}
+            height={siteConfig.logo.height}
+            preload
+            sizes="150px"
+            className="h-14 w-auto sm:h-16"
+          />
         </Link>
 
         <nav aria-label="Main" className="hidden lg:block">

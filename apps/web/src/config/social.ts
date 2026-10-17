@@ -23,15 +23,15 @@ export const socialLinks: readonly SocialLink[] = [
     platform: "instagram",
     label: "Instagram",
     icon: "instagram",
-    // TODO(client): paste the exact Instagram profile URL supplied by the client.
-    href: null,
+    // Client-supplied profile. Share/tracking parameters (dlrf, utm_source) removed.
+    href: "https://www.instagram.com/beyondlearrning",
   },
   {
     platform: "youtube",
     label: "YouTube",
     icon: "youtube",
-    // TODO(client): paste the exact YouTube channel URL once the client shares it.
-    href: null,
+    // Client-supplied channel. Share parameter (si) removed.
+    href: "https://www.youtube.com/@beyondlearrning",
   },
 ];
 

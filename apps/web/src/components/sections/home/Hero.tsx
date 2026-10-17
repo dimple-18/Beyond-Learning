@@ -6,6 +6,7 @@ import { HeroVisual } from "@/components/sections/home/HeroVisual";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { enquiryHref } from "@/config/navigation";
+import { siteConfig } from "@/config/site";
 
 const enter =
   "transition duration-700 ease-out starting:translate-y-3 starting:opacity-0 motion-reduce:transition-none";
@@ -44,6 +45,10 @@ const benefits: { icon: IconName; title: string; line: string }[] = [
  * - DOM order is the mobile order: copy → CTAs → photograph → benefits.
  *   On desktop the photograph is lifted out of flow to the right.
  */
+const taglineBreak = siteConfig.tagline.lastIndexOf(" ");
+const taglineFirst = siteConfig.tagline.slice(0, taglineBreak);
+const taglineSecond = siteConfig.tagline.slice(taglineBreak + 1);
+
 export function Hero() {
   return (
     <section
@@ -59,7 +64,7 @@ export function Hero() {
               className={`${enter} [&_span]:origin-left [&_span]:transition-transform [&_span]:delay-300 [&_span]:duration-[1000ms] [&_span]:ease-out [&_span]:starting:scale-x-0`}
             >
               <Eyebrow className="text-brand">
-                Law Education &amp; Mentorship
+                {siteConfig.strapline}
               </Eyebrow>
             </div>
 
@@ -69,7 +74,7 @@ export function Hero() {
                   style={delay(120)}
                   className={`${lineReveal} whitespace-nowrap`}
                 >
-                  Go Beyond
+                  {taglineFirst}
                 </span>
               </span>
               <span className="-my-[0.12em] block overflow-hidden py-[0.12em]">
@@ -77,7 +82,7 @@ export function Hero() {
                   style={delay(320)}
                   className={`${lineReveal} text-[color-mix(in_srgb,var(--color-accent)_80%,var(--color-brand))]`}
                 >
-                  Learning.
+                  {taglineSecond}
                 </span>
               </span>
             </h1>
@@ -86,9 +91,13 @@ export function Hero() {
               style={delay(200)}
               className={`${enter} mt-7 max-w-[28rem] text-base leading-[1.75] text-[#4a4640] lg:text-[1.0625rem]`}
             >
-              Focused preparation for CLAT, judiciary and other law examinations,
-              guided by mentors who stay invested in your journey beyond the
-              exam.
+              {siteConfig.message}
+            </p>
+            <p
+              style={delay(260)}
+              className={`${enter} mt-5 text-[0.7rem] font-semibold tracking-[0.3em] text-brand/70 uppercase`}
+            >
+              {siteConfig.signature}
             </p>
 
             <div

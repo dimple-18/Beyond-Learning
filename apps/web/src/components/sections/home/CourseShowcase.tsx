@@ -29,14 +29,17 @@ function Star({ className }: { className?: string }) {
   );
 }
 
+const numberWords = ["Zero", "One", "Two", "Three", "Four", "Five", "Six"];
+
 export function CourseShowcase() {
+  const courseCountWord = numberWords[courses.length] ?? String(courses.length);
   const photo = getCoursesPhoto();
 
   const explorerCourses: ExplorerCourse[] = courses.map((course) => ({
     slug: course.slug,
     name: course.name,
     fullName: course.fullName,
-    summary: course.summary,
+    description: course.description,
     visual: getCourseVisual(course),
   }));
 
@@ -67,7 +70,7 @@ export function CourseShowcase() {
                 delay={200}
                 className="mt-6 max-w-[20rem] border-l border-accent/50 pl-5 text-sm leading-relaxed text-[#4a4640]"
               >
-                Three course areas, guided by one mentorship-led approach.
+                {courseCountWord} course areas, guided by one mentorship-led approach.
               </Reveal>
             </>
           }
@@ -141,7 +144,7 @@ export function CourseShowcase() {
                 {clatUg.name}
               </p>
               <p className="mt-6 max-w-[15rem] text-[0.9rem] leading-relaxed text-background/85">
-                {clatUg.description}
+                {clatUg.summary}
               </p>
             </div>
           </Reveal>
