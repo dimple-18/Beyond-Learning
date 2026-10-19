@@ -34,7 +34,7 @@ const layouts = [
   {
     // 02: photograph first, text adjacent
     arch: "right",
-    li: "md:mt-16 xl:mt-0",
+    li: "md:mt-12 xl:mt-0",
     columns: "xl:grid-cols-[1fr_1.25fr]",
     icon: "xl:top-[46px]",
     textOrder: "",
@@ -58,7 +58,7 @@ const layouts = [
   {
     // 04: text, then the closing photograph
     arch: "right",
-    li: "md:mt-16 xl:mt-0",
+    li: "md:mt-12 xl:mt-0",
     columns: "xl:grid-cols-[1.25fr_1fr]",
     icon: "xl:top-[36px]",
     textOrder: "",
@@ -92,7 +92,7 @@ export function Approach() {
     <section
       id="approach"
       aria-labelledby="approach-heading"
-      className="relative overflow-x-clip py-20 lg:py-28"
+      className="relative overflow-x-clip py-16 lg:py-[5.5rem]"
     >
       {/* Faint line artwork on the outer edges (desktop only) */}
       <ArchitectureSketch className="pointer-events-none absolute top-6 left-0 hidden w-60 -translate-x-[42%] opacity-30 xl:block" />
@@ -107,7 +107,7 @@ export function Approach() {
           <Reveal>
             <Eyebrow className="justify-center text-brand">Our Approach</Eyebrow>
           </Reveal>
-          <Reveal delay={100} className="mt-6">
+          <Reveal delay={100} className="mt-5">
             <h2
               id="approach-heading"
               className="font-display text-[2.15rem] leading-[1.08] font-medium tracking-[-0.01em] text-brand sm:text-5xl lg:text-[3.4rem]"
@@ -127,7 +127,7 @@ export function Approach() {
           </Reveal>
         </div>
 
-        <ol className="relative mt-16 grid gap-y-20 md:grid-cols-2 md:gap-x-16 lg:mt-20 xl:mt-14 xl:grid-cols-4 xl:gap-0">
+        <ol className="relative mt-12 grid gap-y-14 md:grid-cols-2 md:gap-x-14 lg:mt-14 xl:mt-10 xl:grid-cols-4 xl:gap-0">
           {/* Journey line: vertical on mobile and tablet, a flowing curve on wide desktops */}
           <svg
             aria-hidden="true"
@@ -171,7 +171,7 @@ export function Approach() {
               <li
                 key={stage.photo.fileName}
                 className={cn(
-                  "relative flex flex-col gap-8 pl-16 md:pl-0 xl:grid xl:gap-x-4 xl:gap-y-0 xl:px-3",
+                  "relative flex flex-col gap-6 pl-16 md:pl-0 xl:grid xl:gap-x-4 xl:gap-y-0 xl:px-3",
                   layout.columns,
                   layout.li,
                 )}

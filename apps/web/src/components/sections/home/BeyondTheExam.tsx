@@ -159,7 +159,17 @@ function ExamPath() {
   );
 }
 
-export function BeyondTheExam() {
+type BeyondTheExamProps = {
+  /** When false, omit the "Our Courses" block (used on /about). Default true for backwards compatibility. */
+  showCourses?: boolean;
+  /** When false, omit the differentiator block. Default true. */
+  showDifferentiator?: boolean;
+};
+
+export function BeyondTheExam({
+  showCourses = true,
+  showDifferentiator = true,
+}: BeyondTheExamProps = {}) {
   return (
     <section
       id="about"
@@ -174,7 +184,7 @@ export function BeyondTheExam() {
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-24 -left-16 size-72 animate-drift rounded-full bg-background/5 blur-3xl [animation-delay:-7s]"
       />
-      <Container className="relative grid items-center gap-16 pt-24 pb-16 lg:grid-cols-12 lg:gap-8 lg:pt-32 lg:pb-20">
+      <Container className={`relative grid items-center gap-16 pt-24 lg:grid-cols-12 lg:gap-8 lg:pt-32 ${showDifferentiator || showCourses ? "pb-16 lg:pb-20" : "pb-24 lg:pb-32"}`}>
         <div className="lg:col-span-6">
           <Reveal>
             <Eyebrow className="text-background/70">{about.heading}</Eyebrow>
@@ -209,57 +219,61 @@ export function BeyondTheExam() {
         </div>
       </Container>
 
-      <Container className="relative pb-24 lg:pb-32">
-        {/* What Makes Us Different */}
-        <div className="grid gap-8 border-t border-background/15 pt-14 lg:grid-cols-12 lg:gap-12 lg:pt-16">
-          <div className="lg:col-span-5">
-            <Reveal>
-              <Eyebrow className="text-background/70">
-                {differentiator.heading}
-              </Eyebrow>
-            </Reveal>
-            <Reveal
-              as="p"
-              delay={120}
-              className="mt-6 font-display text-2xl leading-snug text-background sm:text-3xl"
-            >
-              {differentiator.lead}
-            </Reveal>
-          </div>
-          <Reveal
-            as="p"
-            delay={200}
-            className="text-[0.95rem] leading-relaxed text-background/80 lg:col-span-6 lg:col-start-7 lg:pt-1"
-          >
-            {differentiator.body}
-          </Reveal>
-        </div>
-
-        {/* Our Courses */}
-        <div className="mt-16 lg:mt-20">
-          <Reveal>
-            <Eyebrow className="text-background/70">Our Courses</Eyebrow>
-          </Reveal>
-          <ol className="mt-8 grid gap-x-10 gap-y-12 border-t border-background/15 pt-10 md:grid-cols-2 xl:grid-cols-4 xl:gap-x-8">
-            {courses.map((course, index) => (
-              <Reveal as="li" key={course.slug} delay={120 + index * 100}>
-                <p className="font-display text-lg text-accent">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-2 font-display text-[1.9rem] leading-none font-medium text-background">
-                  {course.name}
-                </h3>
-                <p className="mt-3 text-[0.64rem] font-semibold tracking-[0.2em] text-background/60 uppercase">
-                  {course.fullName}
-                </p>
-                <p className="mt-4 text-[0.88rem] leading-relaxed text-background/80">
-                  {course.description}
-                </p>
+      {(showDifferentiator || showCourses) && (
+        <Container className="relative pb-24 lg:pb-32">
+          {showDifferentiator && (
+            <div className="grid gap-8 border-t border-background/15 pt-14 lg:grid-cols-12 lg:gap-12 lg:pt-16">
+              <div className="lg:col-span-5">
+                <Reveal>
+                  <Eyebrow className="text-background/70">
+                    {differentiator.heading}
+                  </Eyebrow>
+                </Reveal>
+                <Reveal
+                  as="p"
+                  delay={120}
+                  className="mt-6 font-display text-2xl leading-snug text-background sm:text-3xl"
+                >
+                  {differentiator.lead}
+                </Reveal>
+              </div>
+              <Reveal
+                as="p"
+                delay={200}
+                className="text-[0.95rem] leading-relaxed text-background/80 lg:col-span-6 lg:col-start-7 lg:pt-1"
+              >
+                {differentiator.body}
               </Reveal>
-            ))}
-          </ol>
-        </div>
-      </Container>
+            </div>
+          )}
+
+          {showCourses && (
+            <div className={showDifferentiator ? "mt-16 lg:mt-20" : "pt-14 lg:pt-16"}>
+              <Reveal>
+                <Eyebrow className="text-background/70">Our Courses</Eyebrow>
+              </Reveal>
+              <ol className="mt-8 grid gap-x-10 gap-y-12 border-t border-background/15 pt-10 md:grid-cols-2 xl:grid-cols-4 xl:gap-x-8">
+                {courses.map((course, index) => (
+                  <Reveal as="li" key={course.slug} delay={120 + index * 100}>
+                    <p className="font-display text-lg text-accent">
+                      {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="mt-2 font-display text-[1.9rem] leading-none font-medium text-background">
+                      {course.name}
+                    </h3>
+                    <p className="mt-3 text-[0.64rem] font-semibold tracking-[0.2em] text-background/60 uppercase">
+                      {course.fullName}
+                    </p>
+                    <p className="mt-4 text-[0.88rem] leading-relaxed text-background/80">
+                      {course.description}
+                    </p>
+                  </Reveal>
+                ))}
+              </ol>
+            </div>
+          )}
+        </Container>
+      )}
     </section>
   );
 }

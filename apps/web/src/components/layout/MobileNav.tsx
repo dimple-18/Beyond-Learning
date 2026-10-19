@@ -4,11 +4,15 @@ import Link from "next/link";
 import { useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { enquiryHref, mainNav } from "@/config/navigation";
+import { courseNav, enquiryHref, mainNav } from "@/config/navigation";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
-  const close = () => setOpen(false);
+  const [coursesOpen, setCoursesOpen] = useState(false);
+  const close = () => {
+    setOpen(false);
+    setCoursesOpen(false);
+  };
 
   return (
     <div className="lg:hidden">
@@ -45,17 +49,68 @@ export function MobileNav() {
           <Container className="py-6">
             <nav aria-label="Main">
               <ul className="flex flex-col">
-                {mainNav.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      onClick={close}
-                      className="block border-b border-border/70 py-4 font-display text-xl text-brand"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
+                {mainNav.map((item) => {
+                  if (item.href === "/courses") {
+                    return (
+                      <li key={item.href}>
+                        <button
+                          type="button"
+                          aria-expanded={coursesOpen}
+                          onClick={() => setCoursesOpen((value) => !value)}
+                          className="flex w-full items-center justify-between border-b border-border/70 py-4 font-display text-xl text-brand"
+                        >
+                          {item.label}
+                          <svg
+                            aria-hidden="true"
+                            viewBox="0 0 12 12"
+                            className={`size-3.5 transition-transform ${coursesOpen ? "rotate-180" : ""}`}
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                          >
+                            <path d="M2 4l4 4 4-4" />
+                          </svg>
+                        </button>
+                        {coursesOpen && (
+                          <ul className="border-b border-border/70 pb-3">
+                            <li>
+                              <Link
+                                href="/courses"
+                                onClick={close}
+                                className="block py-2.5 pl-4 text-sm text-brand/80"
+                              >
+                                All courses
+                              </Link>
+                            </li>
+                            {courseNav.map((course) => (
+                              <li key={course.href}>
+                                <Link
+                                  href={course.href}
+                                  onClick={close}
+                                  className="block py-2.5 pl-4 text-sm text-brand/80"
+                                >
+                                  {course.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    );
+                  }
+
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={close}
+                        className="block border-b border-border/70 py-4 font-display text-xl text-brand"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
             <ButtonLink href={enquiryHref} onClick={close} className="mt-6 w-full">

@@ -19,6 +19,9 @@ export type ExplorerCourse = {
   name: string;
   fullName: string;
   description: string;
+  /** Destination for the plate CTA (usually the course detail page). */
+  href: string;
+  ctaLabel: string;
   visual: {
     src: string;
     alt: string;
@@ -28,7 +31,6 @@ export type ExplorerCourse = {
 
 type CourseExplorerProps = {
   courses: readonly ExplorerCourse[];
-  enquiryHref: string;
   /** Eyebrow, heading and intro line, rendered on the server. */
   intro: ReactNode;
 };
@@ -47,7 +49,6 @@ const pad = (index: number) => String(index + 1).padStart(2, "0");
  */
 export function CourseExplorer({
   courses,
-  enquiryHref,
   intro,
 }: CourseExplorerProps) {
   const [active, setActive] = useState(0);
@@ -230,13 +231,13 @@ export function CourseExplorer({
                   {course.description}
                 </p>
                 <Link
-                  href={enquiryHref}
+                  href={course.href}
                   className={cn(
                     "group/cta mt-6 inline-flex items-center gap-3 border border-accent/70 px-4 py-3 text-[0.68rem] font-semibold tracking-[0.14em] max-sm:gap-2 max-sm:px-3 max-sm:tracking-[0.08em] text-background uppercase transition-colors duration-300 hover:bg-accent hover:text-brand motion-reduce:transition-none",
                     focusRing,
                   )}
                 >
-                  Enquire about {course.name}
+                  {course.ctaLabel}
                   <Icon
                     name="arrow"
                     strokeWidth={1.5}

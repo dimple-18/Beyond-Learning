@@ -130,7 +130,7 @@ export function Founder() {
         </div>
 
         {/* The Founder's Note: one comfortable reading column */}
-        <div className="mx-auto mt-16 max-w-[40rem] lg:mt-24">
+        <div id="founder-note" className="mx-auto mt-16 max-w-[40rem] scroll-mt-28 lg:mt-24">
           <Reveal>
             <h3 className="flex items-center gap-4 text-[0.72rem] font-semibold tracking-[0.3em] text-[#4a4640] uppercase">
               A note from our founder

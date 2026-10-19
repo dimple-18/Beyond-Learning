@@ -93,3 +93,8 @@ export const judiciary: Course = {
 
 /** The four course areas offered, in display order. */
 export const courses: readonly Course[] = [clatUg, ailet, clatPg, judiciary];
+
+/** Look up a course by its URL slug, or return undefined. */
+export function getCourseBySlug(slug: string): Course | undefined {
+  return courses.find((course) => course.slug === slug);
+}

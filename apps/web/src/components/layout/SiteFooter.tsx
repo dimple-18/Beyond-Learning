@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
-import { enquiryHref, mainNav } from "@/config/navigation";
+import { courseHref, enquiryHref, mainNav } from "@/config/navigation";
 import { Icon } from "@/components/ui/Icon";
 import { contact, emailHref, phoneHref } from "@/config/contact";
 import { siteConfig } from "@/config/site";
@@ -92,7 +92,7 @@ export function SiteFooter() {
           <ul className="mt-5 space-y-3">
             {courses.map((course) => (
               <li key={course.slug}>
-                <Link href="/#courses" className={linkClass}>
+                <Link href={courseHref(course.slug)} className={linkClass}>
                   {course.name}
                 </Link>
               </li>

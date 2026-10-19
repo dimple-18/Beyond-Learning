@@ -1,11 +1,10 @@
 import { Approach } from "@/components/sections/home/Approach";
-import { BeyondTheExam } from "@/components/sections/home/BeyondTheExam";
-import { CourseShowcase } from "@/components/sections/home/CourseShowcase";
+import { AboutPreview } from "@/components/sections/home/AboutPreview";
+import { CoursesOverview } from "@/components/sections/home/CoursesOverview";
 import { FinalCta } from "@/components/sections/home/FinalCta";
+import { FounderPreview } from "@/components/sections/home/FounderPreview";
 import { Hero } from "@/components/sections/home/Hero";
-import { Founder } from "@/components/sections/home/Founder";
-import { Journey } from "@/components/sections/home/Journey";
-import { Mentorship } from "@/components/sections/home/Mentorship";
+import { MentorshipPreview } from "@/components/sections/home/MentorshipPreview";
 import { Ribbon } from "@/components/sections/home/Ribbon";
 
 export default function Home() {
@@ -13,12 +12,11 @@ export default function Home() {
     <>
       <Hero />
       <Ribbon />
-      <BeyondTheExam />
-      <CourseShowcase />
+      <AboutPreview />
+      <CoursesOverview />
       <Approach />
-      <Mentorship />
-      <Founder />
-      <Journey />
+      <MentorshipPreview />
+      <FounderPreview />
       <FinalCta />
     </>
   );

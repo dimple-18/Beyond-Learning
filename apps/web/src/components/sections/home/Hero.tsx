@@ -105,7 +105,7 @@ export function Hero() {
               className={`${enter} mt-9 flex flex-col gap-3 sm:flex-row sm:items-center`}
             >
               <Link
-                href="/#courses"
+                href="/courses"
                 className={`group relative inline-flex items-center justify-center gap-3 overflow-hidden border border-brand bg-brand px-7 py-4 text-xs font-medium tracking-[0.2em] whitespace-nowrap text-background uppercase transition-colors hover:bg-brand/90 ${focusRing}`}
               >
                 <span
